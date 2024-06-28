@@ -8,12 +8,12 @@ def draw_background():
     screen.fill(BACKGROUND_COLOR)
 
 def gen_buttons():
-    x,y,w,h=20,20,60,60
+    x,y,w,h=20,20,80,60
     buttons1=[]
     for i in range(5):
         buttons1.append({'name': names[i], 'coordinates': (x,y,w,h)})
         y=y+h+10
-    x,y,w,h=530,20,60,60
+    x,y,w,h=510,20,80,60
     buttons2=[]
     for i in range(5):
         buttons2.append({'name': names[i], 'coordinates': (x,y,w,h)})
@@ -52,13 +52,13 @@ def winner(selected1, selected2):
     c2=names[selected2]
     for i in range(len(wins)):
         if wins[i][0]==c1 and wins[i][2]==c2:
-            return(1, wins[i])
+            return(0, wins[i])
         if wins[i][0]==c2 and wins[i][2]==c1:
-            return(2, wins[i])
-    return(0, 'Draw')
+            return(1, wins[i])
+    return(-1, 'Draw')
         
 def display_sentence(sentence):
-    pygame.draw.rect(screen, BACKGROUND_COLOR, (190,190,250,100))
+    pygame.draw.rect(screen, BACKGROUND_COLOR, (190,190,300,100))
     if not(isinstance(sentence, str)):
         sentence=' '.join(sentence)
     font = pygame.font.SysFont('arial', 20)
@@ -66,13 +66,19 @@ def display_sentence(sentence):
     screen.blit(text, (200,200))
 
 def display_scores():
+    pygame.draw.rect(screen, BACKGROUND_COLOR, (240,10,200,100))
     font = pygame.font.SysFont('arial', 50)
     text=font.render(str(score[0]), True, WHITE)
-    screen.blit(text, (250,20))
+    if score[0]>9:
+        x=240
+    else:
+        x=270
+    screen.blit(text, (x,20))
     text=font.render('|', True, WHITE)
     screen.blit(text, (300,15))
+
     text=font.render(str(score[1]), True, WHITE)
-    screen.blit(text, (335,20))
+    screen.blit(text, (315,20))
 
 
 
@@ -90,7 +96,7 @@ if __name__=='__main__':
 
     selected1=-1
     selected2=-1
-    score=(0,0)
+    score=[0,0]
     draw_background()
     buttons1,buttons2=gen_buttons()
     draw_buttons()
@@ -118,7 +124,10 @@ if __name__=='__main__':
                         draw_buttons()
                         print(selected1,selected2)
                         w, sentence = winner(selected1, selected2)
+                        if w!=-1:
+                            score[w]+=1
                         display_sentence(sentence)
+                        display_scores()
                         selected1=-1
                         selected2=-1
                         break
