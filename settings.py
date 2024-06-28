@@ -10,17 +10,17 @@ RED=(255,0,0)
 BROWN=(100,50,0)
 WHITE=(255,255,255)
 BLUE=(0,0,255)
-names=['rock','paper', 'scissor', 'spock','lizzard']
+names=['Rock','Paper', 'Scissors', 'Spock','Lizard']
 wins=[  ['Scissors', 'cuts', 'Paper'],
         ['Paper', 'covers', 'Rock'],
         ['Rock', 'crushes', 'Lizard'],
-        ['Lizard' 'poisons' 'Spock'],
-        ['Spock' 'smashes' 'Scissors'],
-        ['Scissors' 'decapitates' 'Lizard'],
-        ['Lizard' 'eats' 'Paper'],
-        ['Paper' 'disproves' 'Spock'],
-        ['Spock' 'vaporizes' 'Rock'],
-        ['Rock' 'crushes' 'Scissors']]
+        ['Lizard', 'poisons', 'Spock'],
+        ['Spock', 'smashes', 'Scissors'],
+        ['Scissors', 'decapitates', 'Lizard'],
+        ['Lizard', 'eats', 'Paper'],
+        ['Paper', 'disproves', 'Spock'],
+        ['Spock', 'vaporizes', 'Rock'],
+        ['Rock', 'crushes', 'Scissors']]
 BACKGROUND_COLOR = BLACK
 
 flags=(pygame.HWSURFACE | pygame.DOUBLEBUF)
